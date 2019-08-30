@@ -156,17 +156,17 @@ public class OI {
   // -Andrew
   public double getX() {
     // return ((-driveStick.getRawAxis(1))*(1/throttleCurve)*Math.pow(throttleCurve, (-driveStick.getRawAxis(1))));
-    return (-driveStick.getRawAxis(1)) * 0.8;
+    return (-driveStick.getRawAxis(1)) * 0.5;
   }
 
   public double getY() {
     // return ((driveStick.getRawAxis(0))*(1/throttleCurve)*Math.pow(throttleCurve, (driveStick.getRawAxis(0))));
-    return -driveStick.getRawAxis(0);
+    return -driveStick.getRawAxis(0) * 0.5;
   }
 
   public double getTwist() {
     // return ((driveStick.getRawAxis(2))*(1/throttleCurve)*Math.pow(throttleCurve, (driveStick.getRawAxis(2))));
-    return (-driveStick.getRawAxis(2)) * 0.8;
+    return (-driveStick.getRawAxis(2)) * 0.5;
   }
 
   public double getCameraTwist() {
