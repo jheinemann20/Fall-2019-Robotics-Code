@@ -161,7 +161,7 @@ public class OI {
 
   public double getY() {
     // return ((driveStick.getRawAxis(0))*(1/throttleCurve)*Math.pow(throttleCurve, (driveStick.getRawAxis(0))));
-    return -driveStick.getRawAxis(0);
+    return -driveStick.getRawAxis(0) * 0.5;
   }
 
   public double getTwist() {
