@@ -7,10 +7,8 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -18,7 +16,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.RobotMap;
-import frc.robot.commands.DriveTrainCommands.ArcadeDriveCom;
 import frc.robot.commands.DriveTrainCommands.MecanumDriveCom;
 
 
@@ -27,7 +24,7 @@ import frc.robot.commands.DriveTrainCommands.MecanumDriveCom;
  */
 public class DriveTrainSub extends Subsystem {
 
-  private CANSparkMax frontLeft, frontRight, rearLeft, rearRight;
+  private reCANSparkMax frontLeft, frontRight, rearLeft, rearRight;
   private MecanumDrive mecDrive;
   private DifferentialDrive arcDrive;
   private SpeedControllerGroup leftSide;
