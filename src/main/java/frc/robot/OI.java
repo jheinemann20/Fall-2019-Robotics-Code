@@ -10,10 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.*;
 import frc.robot.commands.BuffaloCommands.BuffaloNoseOutCom;
 import frc.robot.commands.DriveTrainCommands.ArcadeDriveCom;
-import frc.robot.commands.DriveTrainCommands.MecanumDriveCom;
 import frc.robot.commands.ElevatorCommands.ElevatorDownCom;
 import frc.robot.commands.ElevatorCommands.ElevatorUpCom;
 import frc.robot.commands.HerderCommands.HerderCollect;
@@ -22,12 +20,8 @@ import frc.robot.commands.HerderCommands.TestHerderArmInCom;
 import frc.robot.commands.HerderCommands.TestHerderArmOutCom;
 import frc.robot.commands.LifterCommands.BothLiftersDownCom;
 import frc.robot.commands.LifterCommands.FrontLifterUpCom;
-import frc.robot.commands.LifterCommands.FrontPinInCom;
-import frc.robot.commands.LifterCommands.FrontPinOutCom;
-import frc.robot.commands.LifterCommands.LifterDriveForwardCom;
 import frc.robot.commands.LifterCommands.LifterDriveReverseCom;
 import frc.robot.commands.LifterCommands.RearLifterUpCom;
-import frc.robot.commands.LifterCommands.RearPinInCom;
 import frc.robot.commands.LifterCommands.RearPinOutCom;
 
 /**
