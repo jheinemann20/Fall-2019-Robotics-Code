@@ -24,7 +24,6 @@ import frc.robot.commands.DriveTrainCommands.MecanumDriveCom;
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class DriveTrainSub extends Subsystem {
-
   private CANSparkMax frontLeft, frontRight, rearLeft, rearRight;
   private MecanumDrive mecDrive;
   private DifferentialDrive arcDrive;
@@ -91,6 +90,7 @@ public class DriveTrainSub extends Subsystem {
   */
   
   public void mecanumDrive(double ySpeed, double xSpeed, double zRotation) {
+    System.out.println("("+(-addDeadband(ySpeed))+", "+addDeadband(xSpeed)+", "+(-addDeadband(zRotation))+")");
     mecDrive.driveCartesian(-(addDeadband(ySpeed)), (addDeadband(xSpeed)), -(addDeadband(zRotation)));
     driveSol.set(DoubleSolenoid.Value.kForward);
   }
