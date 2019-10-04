@@ -160,7 +160,7 @@ public class OI {
 
   public double getTwist() {
     // return ((driveStick.getRawAxis(2))*(1/throttleCurve)*Math.pow(throttleCurve, (driveStick.getRawAxis(2))));
-    return (-driveStick.getRawAxis(2)) * 0.2;
+    return (-driveStick.getRawAxis(2)) * 0.5;
   }
 
   public double getCameraTwist() {
