@@ -132,42 +132,42 @@ public class LifterSub extends Subsystem {
 
   // Front lifter up
   public void frontLifterUp() {
-    double frontLiftPotValue = getFrontLiftPot();
-    boolean frontTopLimitValue = getFrontLiftTopLimit();
+    // double frontLiftPotValue = getFrontLiftPot();
+    // boolean frontTopLimitValue = getFrontLiftTopLimit();
 
-    if (frontLiftPotValue < 2.88) {
-      frontLifterMotor.set(-.5);
-    }
+    // if (frontLiftPotValue < 2.88) {
+    //   frontLifterMotor.set(-.5);
+    // }
 
-    else {
-      frontLifterMotor.set(0);
-    }
-
+    // else {
+    //   frontLifterMotor.set(0);
+    // }
+    frontLifterMotor.set(-.5);
   }
 
   // Rear lifter up
   public void rearLifterUp() {
-    Robot.lifterPinSub.rearPinsOut();
-    double rearLiftPotValue = getRearLiftPot();
-    boolean rearTopLimitValue = getRearLiftTopLimit();
+    // Robot.lifterPinSub.rearPinsOut();
+    // double rearLiftPotValue = getRearLiftPot();
+    // boolean rearTopLimitValue = getRearLiftTopLimit();
 
-    if (rearLiftPotValue < 2.98) {
-      rearLifterMotor.set(.5);
-    }
+    // if (rearLiftPotValue < 2.98) {
+    //   rearLifterMotor.set(.5);
+    // }
 
-    else {
-      rearLifterMotor.set(0);
-    }
-
+    // else {
+    //   rearLifterMotor.set(0);
+    // }
+    rearLifterMotor.set(.5);
   }
 
   // Both lifters down--------------------------------------------------
 
   public void bothLiftersDown() {
-    double frontLiftPotValue = getFrontLiftPot();
-    double rearLiftPotValue = getRearLiftPot();
-    boolean frontBottomLimitValue = getFrontLiftTopLimit();
-    boolean rearBottomLimitValue = getRearLiftTopLimit();
+    // double frontLiftPotValue = getFrontLiftPot();
+    // double rearLiftPotValue = getRearLiftPot();
+    // boolean frontBottomLimitValue = getFrontLiftTopLimit();
+    // boolean rearBottomLimitValue = getRearLiftTopLimit();
 
     // When front bottom limit is online add to this statement
     // if (frontLiftPotValue > 0.8 && rearLiftPotValue > 0.9) {
@@ -184,12 +184,12 @@ public class LifterSub extends Subsystem {
 
     // }
 
-    if (frontLiftPotValue > 0.2) {
-      frontLifterMotor.set(.5);
-    } else {
-      frontLifterMotor.set(0);
-      Robot.lifterDriveSub.lifterDriveForward(); // Added drive forward after front lifter gets to the top. -Andrew
-    }
+    // if (frontLiftPotValue > 0.2) {
+    //   frontLifterMotor.set(.5);
+    // } else {
+    //   frontLifterMotor.set(0);
+    //   Robot.lifterDriveSub.lifterDriveForward(); // Added drive forward after front lifter gets to the top. -Andrew
+    // }
 
     // if (frontLiftPotValue > 0.2) {
     //   if (frontLiftPotValue < rearLiftPotValue) {
@@ -202,17 +202,20 @@ public class LifterSub extends Subsystem {
     //   Robot.lifterDriveSub.lifterDriveForward(); // Added drive forward after front lifter gets to the top. -Andrew
     // }
 
-    if (rearLiftPotValue > 0.2) {
-      Robot.lifterPinSub.rearPinsOut();
-      if (frontLiftPotValue < rearLiftPotValue) {
-        rearLifterMotor.set(-0.6);
-      } else {
-        rearLifterMotor.set(-0.4);
-      }
-    } else {
-      rearLifterMotor.set(0);
-      Robot.lifterPinSub.rearPinsIn();
-    }
+    // if (rearLiftPotValue > 0.2) {
+    //   Robot.lifterPinSub.rearPinsOut();
+    //   if (frontLiftPotValue < rearLiftPotValue) {
+    //     rearLifterMotor.set(-0.6);
+    //   } else {
+    //     rearLifterMotor.set(-0.4);
+    //   }
+    // } else {
+    //   rearLifterMotor.set(0);
+    //   Robot.lifterPinSub.rearPinsIn();
+    // }
+
+    frontLifterMotor.set(.5);
+    rearLifterMotor.set(-.5);
   }
 
   // Method to call for default commmand to keep motors still during teleop
