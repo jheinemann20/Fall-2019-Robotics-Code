@@ -76,7 +76,7 @@ public class OI {
 
     shiftButton = new JoystickButton(driveStick, RobotMap.SHIFT_BUTTON_CH);
     shiftButton.toggleWhenPressed(new ArcadeDriveCom());
-    
+
     // Lifter code (drive only)-------------------------------------------------
 
     lifterDriveForwardButton = new JoystickButton(driveStick, RobotMap.LIFTER_DRIVE_FORWARD_BUTTON_CH);
