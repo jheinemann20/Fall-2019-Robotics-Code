@@ -70,8 +70,8 @@ public class RobotMap {
 
   public static int BUFFALO_NOSE_SHIFT_BTN_CH = 7;
 
-  public static int LIFTER_DRIVE_FORWARD_BUTTON_CH = 5;
-  public static int LIFTER_DRIVE_REVERSE_BUTTON_CH = 3;
+  public static int LIFTER_DRIVE_FORWARD_BUTTON_CH = 6;
+  public static int LIFTER_DRIVE_REVERSE_BUTTON_CH = 8;
 
 
   // Create the constants for the elevator joystick and buttons -----------
@@ -99,16 +99,15 @@ public class RobotMap {
   public static int REAR_LIFT_UP_BUTTON_CH = 4;
   public static int FRONT_LIFT_UP_BUTTON_CH = 6;
 
-  // PINS DISABLED FOR THE TIME BEING
-  public static int FRONT_LIFTER_PIN_IN_CH = 0;
-  public static int FRONT_LIFTER_PIN_OUT_CH = 0;
+  public static int FRONT_LIFTER_PIN_IN_CH = 4;
+  public static int FRONT_LIFTER_PIN_OUT_CH = 5;
 
   public static int REAR_LIFTER_PIN_IN_CH = 4;
   public static int REAR_LIFTER_PIN_OUT_CH = 5;
 
-  public static int FRONT_LIFTER_PINS_SHIFT_BTTN_CH = 0;
+  public static int FRONT_LIFTER_PINS_SHIFT_BTTN_CH = 6;
   
-  public static int REAR_LIFTER_PINS_SHIFT_BTTN_CH = 0;
+  public static int REAR_LIFTER_PINS_SHIFT_BTTN_CH = 4; // (currently on DriveStick)
 
 
   // Create constant for deadband
