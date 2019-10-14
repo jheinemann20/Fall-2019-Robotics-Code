@@ -21,12 +21,12 @@ public class ServoSub extends Subsystem {
   private Servo traverseServo;
   private Servo yawServo;
 
-  private final double MAX_ANGLE_LEFT = 180.0;
-  private final double MAX_ANGLE_RIGHT = 180.0;
-  private final double MIN_ANGLE_LEFT = 0.0;
-  private final double MIN_ANGLE_RIGHT = 0.0;
-  private final boolean invertLeft = true;
-  private final boolean invertRight = false;
+  // private final double MAX_ANGLE_LEFT = 180.0;
+  // private final double MAX_ANGLE_RIGHT = 180.0;
+  // private final double MIN_ANGLE_LEFT = 0.0;
+  // private final double MIN_ANGLE_RIGHT = 0.0;
+  // private final boolean invertLeft = true;
+  // private final boolean invertRight = false;
   
 
   public ServoSub() {

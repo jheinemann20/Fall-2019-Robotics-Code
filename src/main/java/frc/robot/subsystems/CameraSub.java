@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -18,8 +17,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class CameraSub extends Subsystem {
-
-  private UsbCamera myCam;
   
 
   // public CameraSub() {

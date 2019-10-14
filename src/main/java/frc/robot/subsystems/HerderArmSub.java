@@ -84,7 +84,6 @@ public class HerderArmSub extends Subsystem {
 
     double max = SmartDashboard.getNumber("Max Output", 0);
     double min = SmartDashboard.getNumber("Min Output", 0);
-    double voltage = SmartDashboard.getNumber("Set Voltage", 0);
 
     if((p != kP)) {
       herderArmPID.setP(p);

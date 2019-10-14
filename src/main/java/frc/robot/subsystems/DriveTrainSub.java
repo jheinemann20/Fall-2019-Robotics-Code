@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -32,13 +31,6 @@ public class DriveTrainSub extends Subsystem {
   private SpeedControllerGroup rightSide;
   private DoubleSolenoid driveSol;
 
-  private CANEncoder frontLeftEncoder;
-  private CANEncoder frontRightEncoder;
-  private CANEncoder rearLeftEncoder;
-  private CANEncoder rearRightEncoder;
-
-  private CANEncoder dummyEncoder;
-  private CANEncoder[] encoders = new CANEncoder[4];
   private double deadband;
 
   public DriveTrainSub() {
@@ -46,11 +38,6 @@ public class DriveTrainSub extends Subsystem {
     frontRight = new CANSparkMax(RobotMap.FRONT_RIGHT_CHANNEL, MotorType.kBrushless);
     rearLeft = new CANSparkMax(RobotMap.REAR_LEFT_CHANNEL, MotorType.kBrushless);
     rearRight = new CANSparkMax(RobotMap.REAR_RIGHT_CHANNEL, MotorType.kBrushless);
-
-    frontLeftEncoder = frontLeft.getEncoder();
-    frontRightEncoder = frontRight.getEncoder();
-    rearLeftEncoder = rearLeft.getEncoder();
-    rearRightEncoder = rearRight.getEncoder();
 
     //frontLeft.setSmartCurrentLimit(40);
     //frontRight.setSmartCurrentLimit(40);
@@ -98,7 +85,6 @@ public class DriveTrainSub extends Subsystem {
   */
   
   public void mecanumDrive(double ySpeed, double xSpeed, double zRotation) {
-    System.out.println("("+(-addDeadband(ySpeed))+", "+addDeadband(xSpeed)+", "+(-addDeadband(zRotation))+")");
     mecDrive.driveCartesian(-(addDeadband(ySpeed)), (addDeadband(xSpeed)), -(addDeadband(zRotation)));
     driveSol.set(DoubleSolenoid.Value.kForward);
   }
