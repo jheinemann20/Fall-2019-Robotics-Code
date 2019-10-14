@@ -39,12 +39,12 @@ public class LifterDriveSub extends Subsystem {
 
   // Lifter drive motor methods---------------------------------------------
   public void lifterDriveForward() {
-    liftDriveMotor.set(1);
+    liftDriveMotor.set(-1);
   }
 
   public void lifterDriveReverse() {
 
-    liftDriveMotor.set(-1);
+    liftDriveMotor.set(1);
   }
 
   public void lifterDriveStop() {

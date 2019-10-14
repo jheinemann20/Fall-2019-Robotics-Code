@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.BuffaloCommands.BuffaloNoseOutCom;
@@ -18,12 +19,10 @@ import frc.robot.commands.HerderCommands.HerderDispense;
 import frc.robot.commands.HerderCommands.TestHerderArmInCom;
 import frc.robot.commands.HerderCommands.TestHerderArmOutCom;
 import frc.robot.commands.LifterCommands.BothLiftersDownCom;
-import frc.robot.commands.LifterCommands.FrontLifterDownCom;
 import frc.robot.commands.LifterCommands.FrontLifterUpCom;
-import frc.robot.commands.LifterCommands.LifterDriveForwardCom;
 import frc.robot.commands.LifterCommands.LifterDriveReverseCom;
-import frc.robot.commands.LifterCommands.RearLifterDownCom;
 import frc.robot.commands.LifterCommands.RearLifterUpCom;
+import frc.robot.commands.LifterCommands.RearPinOutCom;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -46,16 +45,29 @@ public class OI {
 
   private JoystickButton buffaloNoseShift;
 
+  private JoystickButton frontPinShift;
+  private JoystickButton rearPinShift;
+
   private JoystickButton collect, dispense;
 
   private JoystickButton frontLiftUpButton;
   private JoystickButton rearLiftUpButton;
-  private JoystickButton bothLiftersDownButton;
-  private JoystickButton frontLifterDownButton;
-  private JoystickButton rearLifterDownButton;
+  private JoystickButton bothLiftersDownButton1;
+  // Program so both buttons have to be pressed to drop lifter
+  private JoystickButton bothLiftersDownButton2;
+  private JoystickButton bothLiftersUpButton;
 
   private JoystickButton herderArmInButton;
   private JoystickButton herderArmOutButton;
+
+  private double xSpeed;
+  private double ySpeed;
+  private double zRotation;
+  private int throttleCurve = 10;
+
+  private DigitalInput leftEye;
+  private DigitalInput mideEye;
+  private DigitalInput rightEye;
 
   public OI() {
 
@@ -68,11 +80,11 @@ public class OI {
     // Lifter code (drive only)-------------------------------------------------
 
     lifterDriveForwardButton = new JoystickButton(driveStick, RobotMap.LIFTER_DRIVE_FORWARD_BUTTON_CH);
-    lifterDriveForwardButton.whileHeld(new LifterDriveForwardCom());
+    lifterDriveForwardButton.whileHeld(new LifterDriveReverseCom());
     
 
-    lifterDriveReverseButton = new JoystickButton(driveStick, RobotMap.LIFTER_DRIVE_REVERSE_BUTTON_CH);
-    lifterDriveReverseButton.whileHeld(new LifterDriveReverseCom());
+    // lifterDriveReverseButton = new JoystickButton(driveStick, RobotMap.LIFTER_DRIVE_REVERSE_BUTTON_CH);
+    // lifterDriveReverseButton.whileHeld(new LifterDriveReverseCom());
 
   
 
@@ -94,15 +106,9 @@ public class OI {
     rearLiftUpButton = new JoystickButton(elevatorStick, RobotMap.REAR_LIFT_UP_BUTTON_CH);
     rearLiftUpButton.whileHeld(new RearLifterUpCom()); 
 
-    bothLiftersDownButton = new JoystickButton(elevatorStick, RobotMap.BOTH_LIFTERS_DOWN_BUTTON);
-    bothLiftersDownButton.whileHeld(new BothLiftersDownCom());
-
-    rearLifterDownButton = new JoystickButton(elevatorStick, RobotMap.REAR_LIFTER_DOWN_BUTTON);
-    rearLifterDownButton.whileHeld(new RearLifterDownCom());
-
-    frontLifterDownButton = new JoystickButton(elevatorStick, RobotMap.FRONT_LIFTER_DOWN_BUTTON);
-    frontLifterDownButton.whileHeld(new FrontLifterDownCom());
-
+    //This code should be updated to require both buttons to be pressed to lower lifters
+    bothLiftersDownButton1 = new JoystickButton(elevatorStick, RobotMap.BOTH_LIFTERS_DOWN_BUTTON_CH_1);
+    bothLiftersDownButton1.whileHeld(new BothLiftersDownCom());
 
     // buffalo nose code---------------------------------------------
     buffaloNoseShift = new JoystickButton(elevatorStick, RobotMap.BUFFALO_NOSE_SHIFT_BTN_CH);
@@ -177,8 +183,16 @@ public class OI {
     return elevatorStick.getRawAxis(3) * 0.5;
   }
 
-  public double getSecondarySlider() {
-    return ((-elevatorStick.getRawAxis(3)) + 1) / 2;
+  public boolean getLeftEye() {
+    return leftEye.get();
+  }
+
+  public boolean getMidEye() {
+    return leftEye.get();
+  }
+
+  public boolean getRightEye() {
+    return leftEye.get();
   }
 
 }

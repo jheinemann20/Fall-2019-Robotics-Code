@@ -9,6 +9,7 @@ package frc.robot.commands.ElevatorCommands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.OI;
 
 public class ElevatorUpCom extends Command {
   public ElevatorUpCom() {

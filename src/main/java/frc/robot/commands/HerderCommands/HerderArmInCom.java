@@ -28,7 +28,7 @@ public class HerderArmInCom extends Command {
 
 
 
-    Robot.herderArmSub.setHerderArmPosition(1.5);
+    Robot.herderArmSub.setHerderArmPosition(1.5); //TODO: find a midpoint to use to test if it can hold the herder in position
   }
 
   // Make this return true when this Command no longer needs to run execute()

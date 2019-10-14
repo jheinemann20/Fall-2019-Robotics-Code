@@ -9,6 +9,7 @@ package frc.robot.commands.BuffaloCommands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.HerderSub;
 
 public class BuffaloNoseInCom extends Command {
   public BuffaloNoseInCom() {

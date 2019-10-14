@@ -49,10 +49,15 @@ public class RobotMap {
   // Lifter --------------------------------------------------------------
   // Create the constants for the front lifter
   public static int FRONT_LIFT_MOTOR_CH = 11;
+  public static int FRONT_TOP_LIFT_LIMIT_CH = 0;
+  public static int FRONT_BOTTOM_LIFT_LIMIT_CH = 2;
+  public static int FRONT_LIFT_POT_CH = 0;
 
   // Create the constants for the rear lifter
   public static int REAR_LIFT_MOTOR_CH = 6;
-  public static int REAR_BOTTOM_LIFT_LIMIT_CH = 0;
+  public static int REAR_TOP_LIFT_LIMIT_CH = 8;
+  public static int REAR_BOTTOM_LIFT_LIMIT_CH = 9;
+  public static int REAR_LIFT_POT_CH = 1;
 
   // Create the constants for the lift drive motor
   public static int LIFT_DRIVE_MOTOR_CH = 5;
@@ -91,10 +96,8 @@ public class RobotMap {
   public static int HERDER_DISPENSE_BTN_CH = 2;
 
   // lifter system
-  public static int BOTH_LIFTERS_DOWN_BUTTON = 8;
-
-  public static int REAR_LIFTER_DOWN_BUTTON = 11;
-  public static int FRONT_LIFTER_DOWN_BUTTON = 12;
+  public static int BOTH_LIFTERS_DOWN_BUTTON_CH_1 = 11;
+  // public static int BOTH_LIFTERS_DOWN_BUTTON_CH_2 = 10;
 
   public static int REAR_LIFT_UP_BUTTON_CH = 4;
   public static int FRONT_LIFT_UP_BUTTON_CH = 6;
@@ -102,8 +105,8 @@ public class RobotMap {
   public static int FRONT_LIFTER_PIN_IN_CH = 4;
   public static int FRONT_LIFTER_PIN_OUT_CH = 5;
 
-  public static int REAR_LIFTER_PIN_IN_CH = 4;
-  public static int REAR_LIFTER_PIN_OUT_CH = 5;
+  public static int REAR_LIFTER_PIN_IN_CH = 0;
+  public static int REAR_LIFTER_PIN_OUT_CH = 0;
 
   public static int FRONT_LIFTER_PINS_SHIFT_BTTN_CH = 6;
   
@@ -111,5 +114,5 @@ public class RobotMap {
 
 
   // Create constant for deadband
-  public static double DEADBAND_CH = 0.1;
+  public static double DEADBAND_CH = 0.09;
 }

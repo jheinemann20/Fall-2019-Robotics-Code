@@ -10,6 +10,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.LifterCommands.RearPinInCom;
+import frc.robot.commands.LifterCommands.RearPinOutCom;
 
 /**
  * Add your docs here.
@@ -32,11 +34,11 @@ public class LifterPinSub extends Subsystem {
   }
 
   public void rearPinsIn() {
-    rearPins.set(DoubleSolenoid.Value.kForward);
+    rearPins.set(DoubleSolenoid.Value.kReverse);
   }
 
   public void rearPinsOut() {
-    rearPins.set(DoubleSolenoid.Value.kReverse);
+    rearPins.set(DoubleSolenoid.Value.kForward);
   }
 
   @Override
