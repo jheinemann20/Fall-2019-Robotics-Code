@@ -117,8 +117,8 @@ public class OI {
     // frontPinShift = new JoystickButton(elevatorStick, RobotMap.FRONT_LIFTER_PINS_SHIFT_BTTN_CH);
     // frontPinShift.toggleWhenPressed(new FrontPinOutCom());
 
-    rearPinShift = new JoystickButton(elevatorStick, RobotMap.REAR_LIFTER_PINS_SHIFT_BTTN_CH);
-    rearPinShift.whileHeld(new RearPinOutCom());
+    // rearPinShift = new JoystickButton(elevatorStick, RobotMap.REAR_LIFTER_PINS_SHIFT_BTTN_CH);
+    // rearPinShift.whileHeld(new RearPinOutCom());
 
     // Elevator Code
     elevatorUpButton = new JoystickButton(elevatorStick, RobotMap.ELEVATOR_UP_BTN_CH);
