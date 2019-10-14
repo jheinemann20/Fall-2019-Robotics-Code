@@ -8,12 +8,7 @@
 package frc.robot.commands.Autonomus;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 import frc.robot.Robot;
-import frc.robot.subsystems.*;
-
-import edu.wpi.first.wpilibj.command.TimedCommand;
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
 public class LineFollow extends Command {
   public LineFollow() {
@@ -37,19 +32,19 @@ public class LineFollow extends Command {
   @Override
   protected void execute() {
     //Line auto-correction
-		if (Robot.oi.getMidEye() == true) {
-			Robot.driveTrainSub.mecanumDrive(0, 0.20, 0);
-		} else if (Robot.oi.getLeftEye() == true) {
-			Robot.driveTrainSub.mecanumDrive(0, 0.20, -0.22);
-		} else if (Robot.oi.getRightEye() == true) {
-			Robot.driveTrainSub.mecanumDrive(0, 0.20, 0.22);
-		} else if (Robot.oi.getLeftEye() == true && Robot.oi.getMidEye() == true) {
-			Robot.driveTrainSub.mecanumDrive(0, 0.20, -0.15);
-		} else if (Robot.oi.getRightEye() == true && Robot.oi.getMidEye() == true) {
-			Robot.driveTrainSub.mecanumDrive(0, 0.20, 0.15);
-		} else {
-      Robot.driveTrainSub.mecanumDrive(0, 0.10, 0);
-    }
+		// if (Robot.oi.getMidEye() == true) {
+		// 	Robot.driveTrainSub.mecanumDrive(0, 0.20, 0);
+		// } else if (Robot.oi.getLeftEye() == true) {
+		// 	Robot.driveTrainSub.mecanumDrive(0, 0.20, -0.22);
+		// } else if (Robot.oi.getRightEye() == true) {
+		// 	Robot.driveTrainSub.mecanumDrive(0, 0.20, 0.22);
+		// } else if (Robot.oi.getLeftEye() == true && Robot.oi.getMidEye() == true) {
+		// 	Robot.driveTrainSub.mecanumDrive(0, 0.20, -0.15);
+		// } else if (Robot.oi.getRightEye() == true && Robot.oi.getMidEye() == true) {
+		// 	Robot.driveTrainSub.mecanumDrive(0, 0.20, 0.15);
+		// } else {
+    //   Robot.driveTrainSub.mecanumDrive(0, 0.10, 0);
+    // }
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -28,7 +28,7 @@ public class BothLiftersDownCom extends Command {
   @Override
   protected void execute() {
     // Robot.lifterPinSub.rearPinsOut();
-    Robot.lifterSub.bothLiftersDown();
+    Robot.lifterSub.bothLiftersDown(Robot.oi.getSecondarySlider());
   }
 
   // Make this return true when this Command no longer needs to run execute()

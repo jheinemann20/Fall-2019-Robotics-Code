@@ -82,7 +82,6 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     Robot.herderArmSub.getHerderArmPot();
-    Robot.lifterSub.getAllLiftSensors();
     Robot.elevatorSub.getTopLimit();
     Robot.elevatorSub.getBottomLimit();
     Robot.cameraSub.getLimelight();
