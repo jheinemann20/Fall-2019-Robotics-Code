@@ -96,11 +96,11 @@ public class RobotMap {
   public static int HERDER_DISPENSE_BTN_CH = 2;
 
   // lifter system
-  public static int BOTH_LIFTERS_DOWN_BUTTON_CH_1 = 6;
-  public static int BOTH_LIFTERS_DOWN_BUTTON_CH_2 = 10;
+  public static int BOTH_LIFTERS_DOWN_BUTTON_CH_1 = 11;
+  // public static int BOTH_LIFTERS_DOWN_BUTTON_CH_2 = 10;
 
-  public static int REAR_LIFT_UP_BUTTON_CH = 10;
-  public static int FRONT_LIFT_UP_BUTTON_CH = 9;
+  public static int REAR_LIFT_UP_BUTTON_CH = 4;
+  public static int FRONT_LIFT_UP_BUTTON_CH = 6;
 
   public static int FRONT_LIFTER_PIN_IN_CH = 4;
   public static int FRONT_LIFTER_PIN_OUT_CH = 5;

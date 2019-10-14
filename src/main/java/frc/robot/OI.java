@@ -73,21 +73,14 @@ public class OI {
 
     // Drive Joystick--------------------------------------------------------
     driveStick = new Joystick(RobotMap.DRIVE_STICK_CH);
-    // Lifter code-------------------------------------------------
 
-    frontLiftUpButton = new JoystickButton(driveStick, RobotMap.FRONT_LIFT_UP_BUTTON_CH);
-    frontLiftUpButton.whileHeld(new FrontLifterUpCom());
-
-    rearLiftUpButton = new JoystickButton(driveStick, RobotMap.REAR_LIFT_UP_BUTTON_CH);
-    rearLiftUpButton.whileHeld(new RearLifterUpCom()); 
-
-    //This code should be updated to require both buttons to be pressed to lower lifters
-    bothLiftersDownButton1 = new JoystickButton(driveStick, RobotMap.BOTH_LIFTERS_DOWN_BUTTON_CH_1);
-    bothLiftersDownButton1.whileHeld(new BothLiftersDownCom());
-    
     shiftButton = new JoystickButton(driveStick, RobotMap.SHIFT_BUTTON_CH);
     shiftButton.toggleWhenPressed(new ArcadeDriveCom());
+    
+    // Lifter code (drive only)-------------------------------------------------
 
+    lifterDriveForwardButton = new JoystickButton(driveStick, RobotMap.LIFTER_DRIVE_FORWARD_BUTTON_CH);
+    lifterDriveForwardButton.whileHeld(new LifterDriveReverseCom());
     
 
     // lifterDriveReverseButton = new JoystickButton(driveStick, RobotMap.LIFTER_DRIVE_REVERSE_BUTTON_CH);
@@ -105,6 +98,18 @@ public class OI {
 
     elevatorStick = new Joystick(RobotMap.ELEVATOR_STICK_CH);
 
+    // Lifter Controls
+
+    frontLiftUpButton = new JoystickButton(elevatorStick, RobotMap.FRONT_LIFT_UP_BUTTON_CH);
+    frontLiftUpButton.whileHeld(new FrontLifterUpCom());
+
+    rearLiftUpButton = new JoystickButton(elevatorStick, RobotMap.REAR_LIFT_UP_BUTTON_CH);
+    rearLiftUpButton.whileHeld(new RearLifterUpCom()); 
+
+    //This code should be updated to require both buttons to be pressed to lower lifters
+    bothLiftersDownButton1 = new JoystickButton(elevatorStick, RobotMap.BOTH_LIFTERS_DOWN_BUTTON_CH_1);
+    bothLiftersDownButton1.whileHeld(new BothLiftersDownCom());
+
     // buffalo nose code---------------------------------------------
     buffaloNoseShift = new JoystickButton(elevatorStick, RobotMap.BUFFALO_NOSE_SHIFT_BTN_CH);
     buffaloNoseShift.toggleWhenPressed(new BuffaloNoseOutCom());
@@ -121,11 +126,6 @@ public class OI {
 
     elevatorDownButton = new JoystickButton(elevatorStick, RobotMap.ELEVATOR_DOWN_BTN_CH);
     elevatorDownButton.whileHeld(new ElevatorDownCom());
-
-    lifterDriveForwardButton = new JoystickButton(elevatorStick, RobotMap.LIFTER_DRIVE_FORWARD_BUTTON_CH);
-    lifterDriveForwardButton.whileHeld(new LifterDriveReverseCom());
-
-  
 
     // Herder code--------------------------------------------------
     collect = new JoystickButton(elevatorStick, RobotMap.HERDER_COLLECT_BTN_CH);

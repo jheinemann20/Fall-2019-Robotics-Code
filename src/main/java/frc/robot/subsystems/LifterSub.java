@@ -142,7 +142,7 @@ public class LifterSub extends Subsystem {
     // else {
     //   frontLifterMotor.set(0);
     // }
-    frontLifterMotor.set(-.5);
+    frontLifterMotor.set(-1);
   }
 
   // Rear lifter up
@@ -158,7 +158,7 @@ public class LifterSub extends Subsystem {
     // else {
     //   rearLifterMotor.set(0);
     // }
-    rearLifterMotor.set(.5);
+    rearLifterMotor.set(1);
   }
 
   // Both lifters down--------------------------------------------------
@@ -214,8 +214,8 @@ public class LifterSub extends Subsystem {
     //   Robot.lifterPinSub.rearPinsIn();
     // }
 
-    frontLifterMotor.set(.5);
-    rearLifterMotor.set(-.5);
+    frontLifterMotor.set(1);
+    rearLifterMotor.set(-1);
   }
 
   // Method to call for default commmand to keep motors still during teleop
