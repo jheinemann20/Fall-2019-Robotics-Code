@@ -99,8 +99,8 @@ public class RobotMap {
   public static int REAR_LIFT_UP_BUTTON_CH = 4;
   public static int FRONT_LIFT_UP_BUTTON_CH = 6;
 
-  public static int FRONT_LIFTER_PIN_IN_CH = 4;
-  public static int FRONT_LIFTER_PIN_OUT_CH = 5;
+  // public static int FRONT_LIFTER_PIN_IN_CH = 4;
+  // public static int FRONT_LIFTER_PIN_OUT_CH = 5;
 
   public static int REAR_LIFTER_PIN_IN_CH = 4;
   public static int REAR_LIFTER_PIN_OUT_CH = 5;
