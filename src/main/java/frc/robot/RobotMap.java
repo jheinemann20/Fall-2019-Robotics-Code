@@ -67,16 +67,18 @@ public class RobotMap {
 
   public static int DRIVE_STICK_CH = 0;
   public static int SHIFT_BUTTON_CH = 1;
+  public static int SLOW_BUTTON_CH = 2;
 
-  public static int BUFFALO_NOSE_SHIFT_BTN_CH = 7;
-
-  public static int LIFTER_DRIVE_FORWARD_BUTTON_CH = 6;
-  public static int LIFTER_DRIVE_REVERSE_BUTTON_CH = 8;
+  public static int LIFTER_DRIVE_FORWARD_BUTTON_CH = 5;
+  public static int LIFTER_DRIVE_REVERSE_BUTTON_CH = 3;
 
 
   // Create the constants for the elevator joystick and buttons -----------
 
   public static int ELEVATOR_STICK_CH = 1;
+
+  // buffalo nose
+  public static int BUFFALO_NOSE_SHIFT_BTN_CH = 7;
 
   // herder arm system
   public static int HERDER_ARM_IN_BTN = 5;
@@ -111,5 +113,5 @@ public class RobotMap {
 
 
   // Create constant for deadband
-  public static double DEADBAND_CH = 0.1;
+  public static double DEADBAND_CH = 0.05;
 }

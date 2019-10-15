@@ -161,7 +161,6 @@ public class LifterSub extends Subsystem {
   
     // Rear lifter down
     public void rearLifterDown() {
-      Robot.lifterPinSub.rearPinsOut();
     if (rearDownLimit.get())
       rearLifterMotor.set(-.5);
     else
@@ -171,7 +170,6 @@ public class LifterSub extends Subsystem {
   // Both lifters down--------------------------------------------------
 
   public void bothLiftersDown(double secondSpeed) {
-    Robot.lifterPinSub.rearPinsOut();
     frontLifterMotor.set(1);
     if ((secondSpeed > 0) && (rearDownLimit.get()))
       rearLifterMotor.set(-secondSpeed);

@@ -7,11 +7,13 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -25,11 +27,13 @@ import frc.robot.commands.DriveTrainCommands.MecanumDriveCom;
  */
 public class DriveTrainSub extends Subsystem {
   private CANSparkMax frontLeft, frontRight, rearLeft, rearRight;
+  private CANEncoder frontLeftEncoder, frontRightEncoder, backLeftEncoder, backRightEncoder;
   private MecanumDrive mecDrive;
   private DifferentialDrive arcDrive;
   private SpeedControllerGroup leftSide;
   private SpeedControllerGroup rightSide;
   private DoubleSolenoid driveSol;
+  private Joystick myJoy;
 
   private double deadband;
 
@@ -38,6 +42,13 @@ public class DriveTrainSub extends Subsystem {
     frontRight = new CANSparkMax(RobotMap.FRONT_RIGHT_CHANNEL, MotorType.kBrushless);
     rearLeft = new CANSparkMax(RobotMap.REAR_LEFT_CHANNEL, MotorType.kBrushless);
     rearRight = new CANSparkMax(RobotMap.REAR_RIGHT_CHANNEL, MotorType.kBrushless);
+
+    frontLeftEncoder = frontLeft.getEncoder();
+    frontRightEncoder = frontRight.getEncoder();
+    backLeftEncoder = rearLeft.getEncoder();
+    backRightEncoder = rearRight.getEncoder();
+
+    myJoy = new Joystick(0);
 
     //frontLeft.setSmartCurrentLimit(40);
     //frontRight.setSmartCurrentLimit(40);
@@ -85,12 +96,18 @@ public class DriveTrainSub extends Subsystem {
   */
   
   public void mecanumDrive(double ySpeed, double xSpeed, double zRotation) {
-    mecDrive.driveCartesian(-(addDeadband(ySpeed)), (addDeadband(xSpeed)), -(addDeadband(zRotation)));
+    if (!myJoy.getRawButton(RobotMap.SLOW_BUTTON_CH))
+      mecDrive.driveCartesian(-(addDeadband(ySpeed)), (addDeadband(xSpeed)), -(addDeadband(zRotation)));
+    else // Bypasses deadband and slows down movement while the button is held down
+      mecDrive.driveCartesian(-(ySpeed * 0.25), (xSpeed * 0.25), -(zRotation * 0.25));
     driveSol.set(DoubleSolenoid.Value.kForward);
   }
 
   public void arcadeDrive(double xSpeed, double zRotation) {
-    arcDrive.arcadeDrive((addDeadband(-xSpeed)), -(addDeadband(zRotation)));
+    if (!myJoy.getRawButton(RobotMap.SLOW_BUTTON_CH))
+      arcDrive.arcadeDrive((addDeadband(-xSpeed)), -(addDeadband(zRotation)));
+    else // Bypasses deadband and slows down movement while the button is held down
+      arcDrive.arcadeDrive(-(xSpeed * 0.25), -(zRotation * 0.25));
     driveSol.set(DoubleSolenoid.Value.kReverse);
   }
 
