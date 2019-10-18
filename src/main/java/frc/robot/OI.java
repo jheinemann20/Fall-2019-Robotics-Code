@@ -157,6 +157,10 @@ public class OI {
     return (-driveStick.getRawAxis(2)) * 0.5;
   }
 
+  public double getSlider() {
+    return ((-driveStick.getRawAxis(3)) + 1) / 2;
+  }
+
   public double getCameraTwist() {
     return elevatorStick.getRawAxis(1);
   }

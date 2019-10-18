@@ -99,7 +99,7 @@ public class DriveTrainSub extends Subsystem {
     if (!myJoy.getRawButton(RobotMap.SLOW_BUTTON_CH))
       mecDrive.driveCartesian(-(addDeadband(ySpeed)), (addDeadband(xSpeed)), -(addDeadband(zRotation)));
     else // Bypasses deadband and slows down movement while the button is held down
-      mecDrive.driveCartesian(-(ySpeed * 0.25), (xSpeed * 0.25), -(zRotation * 0.25));
+      mecDrive.driveCartesian(-ySpeed, xSpeed, -zRotation);
     driveSol.set(DoubleSolenoid.Value.kForward);
   }
 
@@ -107,7 +107,7 @@ public class DriveTrainSub extends Subsystem {
     if (!myJoy.getRawButton(RobotMap.SLOW_BUTTON_CH))
       arcDrive.arcadeDrive((addDeadband(-xSpeed)), -(addDeadband(zRotation)));
     else // Bypasses deadband and slows down movement while the button is held down
-      arcDrive.arcadeDrive(-(xSpeed * 0.25), -(zRotation * 0.25));
+      arcDrive.arcadeDrive(-xSpeed, -zRotation);
     driveSol.set(DoubleSolenoid.Value.kReverse);
   }
 
