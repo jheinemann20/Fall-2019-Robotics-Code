@@ -15,7 +15,7 @@ package frc.robot;
  */
 public class RobotMap {
 
-  // Create constants for the drive motors- change the values to the motor
+// Create constants for the drive motors- change the values to the motor
   // controller ID
   public static int FRONT_LEFT_CHANNEL = 2;
   public static int FRONT_RIGHT_CHANNEL = 4;
@@ -62,6 +62,7 @@ public class RobotMap {
   public static int DRIVE_SOL_FORWARD_CH = 0;
   public static int DRIVE_SOL_REVERSE_CH = 1;
 
+  // Additional sensors... ------------------------------------------------
 
   // Create the constants for the driver joystick and buttons--------------
 

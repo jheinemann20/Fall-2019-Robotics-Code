@@ -111,6 +111,19 @@ public class DriveTrainSub extends Subsystem {
     driveSol.set(DoubleSolenoid.Value.kReverse);
   }
 
+  public double getCurrent(String name) {
+    if (name.equals("FR"))
+      return frontRight.getOutputCurrent();
+    else if (name.equals("FL"))
+      return frontLeft.getOutputCurrent();
+    else if (name.equals("RR"))
+      return rearRight.getOutputCurrent();
+    else if (name.equals("RL"))
+      return rearLeft.getOutputCurrent();
+    else
+      return 0;
+  }
+
   // Adds deadband to a given axis (for driving only)
   public double addDeadband(double x) {
     if (x >= deadband)

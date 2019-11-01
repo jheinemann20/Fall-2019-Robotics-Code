@@ -85,6 +85,16 @@ public class Robot extends TimedRobot {
     Robot.elevatorSub.getTopLimit();
     Robot.elevatorSub.getBottomLimit();
     Robot.cameraSub.getLimelight();
+
+    double FL = driveTrainSub.getCurrent("FL");
+    double FR = driveTrainSub.getCurrent("FR");
+    double RL = driveTrainSub.getCurrent("RL");
+    double RR = driveTrainSub.getCurrent("RR");
+    SmartDashboard.putNumber("Current FR", FR);
+    SmartDashboard.putNumber("Current FL", FL);
+    SmartDashboard.putNumber("Current RR", RR);
+    SmartDashboard.putNumber("Current RL", RL);
+    SmartDashboard.putNumber("Current All", FL + FR + RL + RR);
     //Timer.delay(0.1); //limit update to every 100ms
   }
 
