@@ -9,14 +9,9 @@
 
 package frc.robot.commands.Autonomus;
 
-import edu.wpi.first.wpilibj.ADXL345_SPI;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer.Range;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
 public class GyroDrive extends Command {
 
@@ -39,7 +34,9 @@ public class GyroDrive extends Command {
   @Override
   protected void execute() {
     double angle = myGyro.getAngle();
-    Robot.driveTrainSub.mecanumDrive(Robot.oi.getY(), 0, -(angle / 360));
+    if (angle > 180)
+      angle = -(180 - (angle - 180));
+    Robot.driveTrainSub.mecanumDrive(Robot.oi.getY(), 0, -angle / 180);
   }
 
   // Make this return true when this Command no longer needs to run execute()
