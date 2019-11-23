@@ -26,8 +26,8 @@ public class CameraSub extends Subsystem {
   public void getLimelight()
   {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(1);
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(0);
+    // NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(1);
+    // NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(0);
 
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");

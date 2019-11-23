@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -21,9 +22,8 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveTrainCommands.MecanumDriveCom;
 
-
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * An example subsystem. You can replace me with your own Subsystem.
  */
 public class DriveTrainSub extends Subsystem {
   private CANSparkMax frontLeft, frontRight, rearLeft, rearRight;
@@ -36,6 +36,10 @@ public class DriveTrainSub extends Subsystem {
   private Joystick myJoy;
 
   private double deadband;
+
+  private boolean m_LimelightHasValidTarget = false;
+  private double m_LimelightDriveCommand = 0.0;
+  private double m_LimelightSteerCommand = 0.0;
 
   public DriveTrainSub() {
     frontLeft = new CANSparkMax(RobotMap.FRONT_LEFT_CHANNEL, MotorType.kBrushless);
@@ -50,17 +54,15 @@ public class DriveTrainSub extends Subsystem {
 
     myJoy = new Joystick(0);
 
-    //frontLeft.setSmartCurrentLimit(40);
-    //frontRight.setSmartCurrentLimit(40);
-    //rearLeft.setSmartCurrentLimit(40);
-    //rearRight.setSmartCurrentLimit(40);
-    
+    // frontLeft.setSmartCurrentLimit(40);
+    // frontRight.setSmartCurrentLimit(40);
+    // rearLeft.setSmartCurrentLimit(40);
+    // rearRight.setSmartCurrentLimit(40);
 
-
-    //encoders[0] = frontLeftEncoder;
-    //encoders[1] = frontRightEncoder;
-    //encoders[2] = backLeftEncoder;
-    //encoders[3] = backRightEncoder;
+    // encoders[0] = frontLeftEncoder;
+    // encoders[1] = frontRightEncoder;
+    // encoders[2] = backLeftEncoder;
+    // encoders[3] = backRightEncoder;
 
     mecDrive = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
     mecDrive.setSafetyEnabled(false);
@@ -69,7 +71,6 @@ public class DriveTrainSub extends Subsystem {
     rightSide = new SpeedControllerGroup(frontRight, rearRight);
     arcDrive = new DifferentialDrive(leftSide, rightSide);
 
-    
     frontLeft.setOpenLoopRampRate(0);
     frontRight.setOpenLoopRampRate(0);
     rearLeft.setOpenLoopRampRate(0);
@@ -79,22 +80,18 @@ public class DriveTrainSub extends Subsystem {
     frontRight.setIdleMode(IdleMode.kCoast);
     rearLeft.setIdleMode(IdleMode.kCoast);
     rearRight.setIdleMode(IdleMode.kCoast);
-    
+
     deadband = RobotMap.DEADBAND_CH;
 
     driveSol = new DoubleSolenoid(RobotMap.DRIVE_SOL_FORWARD_CH, RobotMap.DRIVE_SOL_REVERSE_CH);
   }
 
-  /** 
+  /**
+   * 
+   * public CANEncoder getEncoders() { for(int i = 0; i < encoders.length; i++) {
+   * return encoders[i]; } return dummyEncoder; }
+   */
 
-  public CANEncoder getEncoders() {
-    for(int i = 0; i < encoders.length; i++) {
-      return encoders[i];
-    }
-    return dummyEncoder;
-  }
-  */
-  
   public void mecanumDrive(double ySpeed, double xSpeed, double zRotation) {
     if (!myJoy.getRawButton(RobotMap.SLOW_BUTTON_CH))
       mecDrive.driveCartesian(-(addDeadband(ySpeed)), (addDeadband(xSpeed)), -(addDeadband(zRotation)));
@@ -104,11 +101,20 @@ public class DriveTrainSub extends Subsystem {
   }
 
   public void arcadeDrive(double xSpeed, double zRotation) {
-    if (!myJoy.getRawButton(RobotMap.SLOW_BUTTON_CH))
-      arcDrive.arcadeDrive((addDeadband(-xSpeed)), -(addDeadband(zRotation)));
-    else // Bypasses deadband and slows down movement while the button is held down
+    Update_Limelight_Tracking();
+    System.out.println(m_LimelightHasValidTarget);
+    if (true) {
+      if (m_LimelightHasValidTarget) {
+        driveSol.set(DoubleSolenoid.Value.kReverse);
+        arcDrive.arcadeDrive(m_LimelightDriveCommand * 0.5, m_LimelightSteerCommand * 0.5);
+      } else {
+        arcDrive.arcadeDrive(0, 0);
+        driveSol.set(DoubleSolenoid.Value.kReverse);
+      }
+    } else {
       arcDrive.arcadeDrive(-xSpeed, -zRotation);
-    driveSol.set(DoubleSolenoid.Value.kReverse);
+      driveSol.set(DoubleSolenoid.Value.kReverse);
+    }
   }
 
   public double getCurrent(String name) {
@@ -122,6 +128,41 @@ public class DriveTrainSub extends Subsystem {
       return rearLeft.getOutputCurrent();
     else
       return 0;
+  }
+
+  public void Update_Limelight_Tracking() {
+    // These numbers must be tuned for your Robot! Be careful!
+    final double STEER_K = 0.03; // how hard to turn toward the target
+    final double DRIVE_K = 0.26; // how hard to drive fwd toward the target
+    final double DESIRED_TARGET_AREA = 50.0; // Area of the target when the robot reaches the wall
+    final double MAX_DRIVE = 0.7; // Simple speed limit so we don't drive too fast
+
+    double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+    double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+    double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+    double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+
+    if (tv < 1.0) {
+      m_LimelightHasValidTarget = false;
+      m_LimelightDriveCommand = 0.0;
+      m_LimelightSteerCommand = 0.0;
+      return;
+    }
+
+    m_LimelightHasValidTarget = true;
+
+    // Start with proportional steering
+    double steer_cmd = tx * STEER_K;
+    m_LimelightSteerCommand = steer_cmd;
+
+    // try to drive forward until the target area reaches our desired area
+    double drive_cmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
+
+    // don't let the robot drive too fast into the goal
+    if (drive_cmd > MAX_DRIVE) {
+      drive_cmd = MAX_DRIVE;
+    }
+    m_LimelightDriveCommand = drive_cmd;
   }
 
   // Adds deadband to a given axis (for driving only)
