@@ -131,9 +131,9 @@ public class DriveTrainSub extends Subsystem {
 
   public void Update_Limelight_Tracking() {
     // These numbers must be tuned for your Robot! Be careful!
-    final double STEER_K = 0.26; // how hard to turn toward the target
+    final double STEER_K = 0.07; // how hard to turn toward the target
     final double DRIVE_K = 0.26; // how hard to drive fwd toward the target
-    final double DESIRED_TARGET_AREA = 25; // Area of the target when the robot reaches the wall
+    final double DESIRED_TARGET_AREA = 20; // Area of the target when the robot reaches the wall
     final double MAX_DRIVE = 0.7; // Simple speed limit so we don't drive too fast
 
     double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
